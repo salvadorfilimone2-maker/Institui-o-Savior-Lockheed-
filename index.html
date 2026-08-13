@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sistema de Gestão Académica</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
+
+    <header class="topo">
+
+        <div class="logo">
+            <h1>Gestão Académica</h1>
+        </div>
+
+        <div class="usuario-logado">
+            <span id="nomeUsuarioLogado">Administrador</span>
+            <button onclick="logout()">Sair</button>
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MENU
+    ========================== -->
+
+    <nav class="menu">
+
+        <button onclick="mostrarPagina('inicio')">
+            Início
+        </button>
+
+        <button onclick="mostrarPagina('usuarios')">
+            Usuários
+        </button>
+
+        <button onclick="mostrarPagina('alunos')">
+            Alunos
+        </button>
+
+        <button onclick="mostrarPagina('professores')">
+            Professores
+        </button>
+
+        <button onclick="mostrarPagina('cursos')">
+            Cursos
+        </button>
+
+        <button onclick="mostrarPagina('turmas')">
+            Turmas
+        </button>
+
+        <button onclick="mostrarPagina('disciplinas')">
+            Disciplinas
+        </button>
+
+        <button onclick="mostrarPagina('matriculas')">
+            Matrículas
+        </button>
+
+    </nav>
+
+
+    <!-- =========================
+         CONTEÚDO PRINCIPAL
+    ========================== -->
+
+    <main class="conteudo">
+
+
+        <!-- =====================
+             INÍCIO
+        ====================== -->
+
+        <section id="inicio" class="pagina ativa">
+
+            <h2>Painel Principal</h2>
+
+            <p>
+                Bem-vindo ao Sistema de Gestão Académica.
+            </p>
+
+
+            <div class="dashboard">
+
+                <div class="card">
+
+                    <h3>Usuários</h3>
+
+                    <strong id="totalUsuarios">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>Alunos</h3>
+
+                    <strong id="totalAlunos">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>Professores</h3>
+
+                    <strong id="totalProfessores">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>Cursos</h3>
+
+                    <strong id="totalCursos">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>Disciplinas</h3>
+
+                    <strong id="totalDisciplinas">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>Matrículas</h3>
+
+                    <strong id="totalMatriculas">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================
+             USUÁRIOS
+        ====================== -->
+
+        <section id="usuarios" class="pagina">
+
+            <h2>Gestão de Usuários</h2>
+
+
+            <div class="form-card">
+
+                <h3>Cadastrar Usuário</h3>
+
+
+                <label>
+                    Nome completo
+                </label>
+
+                <input
+                    type="text"
+                    id="usuarioNome"
+                    placeholder="Digite o nome completo"
+                >
+
+
+                <label>
+                    Nome de usuário
+                </label>
+
+                <input
+                    type="text"
+                    id="usuarioUsername"
+                    placeholder="Digite o nome de usuário"
+                >
+
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="usuarioEmail"
+                    placeholder="Digite o email"
+                >
+
+
+                <label>
+                    Senha
+                </label>
+
+                <input
+                    type="password"
+                    id="usuarioSenha"
+                    placeholder="Digite a senha"
+                >
+
+
+                <label>
+                    Tipo de usuário
+                </label>
+
+                <select id="usuarioTipo">
+
+                    <option value="">
+                        Selecione o tipo
+                    </option>
+
+                    <option value="Administrador">
+                        Administrador
+                    </option>
+
+                    <option value="Professor">
+                        Professor
+                    </option>
+
+                    <option value="Aluno">
+                        Aluno
+                    </option>
+
+                </select>
+
+
+                <button onclick="cadastrarUsuario()">
+                    Cadastrar Usuário
+                </button>
+
+            </div>
+
+
+            <div class="lista-card">
+
+                <h3>Usuários cadastrados</h3>
+
+
+                <div class="tabela-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Nome</th>
+
+                                <th>Usuário</th>
+
+                                <th>Email</th>
+
+                                <th>Tipo</th>
+
+                                <th>Ações</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="tabelaUsuarios">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================
+             ALUNOS
+        ====================== -->
+
+        <section id="alunos" class="pagina">
+
+            <h2>Gestão de Alunos</h2>
+
+            <div class="form-card">
+
+                <h3>Cadastrar Aluno</h3>
+
+                <input
+                    type="text"
+                    id="alunoNome"
+                    placeholder="Nome completo"
+                >
+
+                <input
+                    type="text"
+                    id="alunoNumero"
+                    placeholder="Número do aluno"
+                >
+
+                <input
+                    type="text"
+                    id="alunoCurso"
+                    placeholder="Curso"
+                >
+
+                <button onclick="cadastrarAluno()">
+                    Cadastrar Aluno
+                </button>
+
+            </div>
+
+
+            <div class="lista-card">
+
+                <h3>Alunos cadastrados</h3>
+
+                <div class="tabela-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Número</th>
+                                <th>Curso</th>
+                                <th>Ações</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tabelaAlunos">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================
+             PROFESSORES
+        ====================== -->
+
+        <section id="professores" class="pagina">
+
+            <h2>Gestão de Professores</h2>
+
+            <div class="form-card">
+
+                <h3>Cadastrar Professor</h3>
+
+                <input
+                    type="text"
+                    id="professorNome"
+                    placeholder="Nome completo"
+                >
+
+                <input
+                    type="text"
+                    id="professorEspecialidade"
+                    placeholder="Especialidade"
+                >
+
+                <button onclick="cadastrarProfessor()">
+                    Cadastrar Professor
+                </button>
+
+            </div>
+
+
+            <div class="lista-card">
+
+                <h3>Professores cadastrados</h3>
+
+                <div class="tabela-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Especialidade</th>
+                                <th>Ações</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tabelaProfessores">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================
+             CURSOS
+        ====================== -->
+
+        <section id="cursos" class="pagina">
+
+            <h2>Gestão de Cursos</h2>
+
+            <div class="form-card">
+
+                <h3>Cadastrar Curso</h3>
+
+                <input
+                    type="text"
+                    id="cursoNome"
+                    placeholder="Nome do curso"
+                >
+
+                <input
+                    type="text"
+                    id="cursoDuracao"
+                    placeholder="Duração do curso"
+                >
+
+                <button onclick="cadastrarCurso()">
+                    Cadastrar Curso
+                </button>
+
+            </div>
+
+
+            <div class="lista-card">
+
+                <h3>Cursos cadastrados</h3>
+
+                <div class="tabela-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Curso</th>
+                                <th>Duração</th>
+                                <th>Ações</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tabelaCursos">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================
+             TURMAS
+        ====================== -->
+
+        <section id="turmas" class="pagina">
+
+            <h2>Gestão de Turmas</h2>
+
+            <div class="form-card">
+
+                <h3>Cadastrar Turma</h3>
+
+                <input
+                    type="text"
+                    id="turmaNome"
+                    placeholder="Nome da turma"
+                >
+
+                <input
+                    type="text"
+                    id="turmaAno"
+                    placeholder="Ano letivo"
+                >
+
+                <button onclick="cadastrarTurma()">
+                    Cadastrar Turma
+                </button>
+
+            </div>
+
+
+            <div class="lista-card">
+
+                <h3>Turmas cadastradas</h3>
+
+                <div class="tabela-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Turma</th>
+                                <th>Ano</th>
+                                <th>Ações</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tabelaTurmas">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================
+             DISCIPLINAS
+        ====================== -->
+
+        <section id="disciplinas" class="pagina">
+
+            <h2>Gestão de Disciplinas</h2>
+
+            <div class="form-card">
+
+                <h3>Cadastrar Disciplina</h3>
+
+                <input
+                    type="text"
+                    id="disciplinaNome"
+                    placeholder="Nome da disciplina"
+                >
+
+                <input
+                    type="text"
+                    id="disciplinaCodigo"
+                    placeholder="Código da disciplina"
+                >
+
+                <button onclick="cadastrarDisciplina()">
+                    Cadastrar Disciplina
+                </button>
+
+            </div>
+
+
+            <div class="lista-card">
+
+                <h3>Disciplinas cadastradas</h3>
+
+                <div class="tabela-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Disciplina</th>
+                                <th>Código</th>
+                                <th>Ações</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tabelaDisciplinas">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================
+             MATRÍCULAS
+        ====================== -->
+
+        <section id="matriculas" class="pagina">
+
+            <h2>Gestão de Matrículas</h2>
+
+            <div class="form-card">
+
+                <h3>Registrar Matrícula</h3>
+
+                <input
+                    type="text"
+                    id="matriculaAluno"
+                    placeholder="Nome do aluno"
+                >
+
+                <input
+                    type="text"
+                    id="matriculaCurso"
+                    placeholder="Curso"
+                >
+
+                <input
+                    type="text"
+                    id="matriculaAno"
+                    placeholder="Ano letivo"
+                >
+
+                <button onclick="cadastrarMatricula()">
+                    Registrar Matrícula
+                </button>
+
+            </div>
+
+
+            <div class="lista-card">
+
+                <h3>Matrículas registradas</h3>
+
+                <div class="tabela-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Aluno</th>
+                                <th>Curso</th>
+                                <th>Ano</th>
+                                <th>Ações</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tabelaMatriculas">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>

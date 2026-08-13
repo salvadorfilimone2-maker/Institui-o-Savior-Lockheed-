@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Painel Administrativo</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="admin-container">
+
+
+    <!-- ================================
+         CABEÇALHO
+    ================================= -->
+
+    <header class="admin-header">
+
+        <div>
+
+            <h1>
+                🎓 Gestão Académica
+            </h1>
+
+            <p>
+                Painel do Administrador
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <span id="adminNome">
+                Administrador
+            </span>
+
+            <button
+                onclick="logout()">
+
+                Sair
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================================
+         MENU
+    ================================= -->
+
+    <nav class="admin-menu">
+
+        <button
+            onclick="mostrarPagina('inicio')">
+
+            🏠 Dashboard
+
+        </button>
+
+
+        <button
+            onclick="mostrarPagina('cadastros')">
+
+            🔔 Cadastros
+            <span id="contadorCadastros">
+                0
+            </span>
+
+        </button>
+
+
+        <button
+            onclick="mostrarPagina('alunos')">
+
+            👨‍🎓 Alunos
+
+        </button>
+
+
+        <button
+            onclick="mostrarPagina('professores')">
+
+            👨‍🏫 Professores
+
+        </button>
+
+
+        <button
+            onclick="mostrarPagina('cursos')">
+
+            📚 Cursos
+
+        </button>
+
+
+        <button
+            onclick="mostrarPagina('turmas')">
+
+            🏫 Turmas
+
+        </button>
+
+
+        <button
+            onclick="mostrarPagina('disciplinas')">
+
+            📖 Disciplinas
+
+        </button>
+
+
+        <button
+            onclick="mostrarPagina('matriculas')">
+
+            📝 Matrículas
+
+        </button>
+
+
+        <button
+            onclick="mostrarPagina('notas')">
+
+            📊 Notas
+
+        </button>
+
+
+        <button
+            onclick="mostrarPagina('utilizadores')">
+
+            👥 Utilizadores
+
+        </button>
+
+
+        <button
+            onclick="mostrarPagina('relatorios')">
+
+            📈 Relatórios
+
+        </button>
+
+    </nav>
+
+
+    <!-- ================================
+         CONTEÚDO
+    ================================= -->
+
+    <main class="admin-content">
+
+
+        <!-- ================================
+             DASHBOARD
+        ================================= -->
+
+        <section
+            id="inicio"
+            class="pagina">
+
+            <h2>
+                Dashboard
+            </h2>
+
+            <p>
+                Bem-vindo ao painel administrativo.
+            </p>
+
+
+            <div class="dashboard">
+
+
+                <div class="card">
+
+                    <h3>
+                        👨‍🎓 Alunos
+                    </h3>
+
+                    <strong
+                        id="totalAlunos">
+
+                        0
+
+                    </strong>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        🔔 Pendentes
+                    </h3>
+
+                    <strong
+                        id="totalPendentes">
+
+                        0
+
+                    </strong>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        👨‍🏫 Professores
+                    </h3>
+
+                    <strong
+                        id="totalProfessores">
+
+                        0
+
+                    </strong>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        📚 Cursos
+                    </h3>
+
+                    <strong
+                        id="totalCursos">
+
+                        0
+
+                    </strong>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        🏫 Turmas
+                    </h3>
+
+                    <strong
+                        id="totalTurmas">
+
+                        0
+
+                    </strong>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        📖 Disciplinas
+                    </h3>
+
+                    <strong
+                        id="totalDisciplinas">
+
+                        0
+
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             CADASTROS
+        ================================= -->
+
+        <section
+            id="cadastros"
+            class="pagina">
+
+            <h2>
+                🔔 Cadastros Pendentes
+            </h2>
+
+            <p>
+                Aprove ou rejeite os pedidos
+                de novos alunos.
+            </p>
+
+
+            <div id="listaCadastros">
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             ALUNOS
+        ================================= -->
+
+        <section
+            id="alunos"
+            class="pagina">
+
+            <h2>
+                👨‍🎓 Gestão de Alunos
+            </h2>
+
+
+            <input
+                type="text"
+                id="pesquisaAluno"
+                placeholder="🔎 Pesquisar aluno..."
+                oninput="pesquisarAlunos()"
+            >
+
+
+            <div class="tabela-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Nº
+                            </th>
+
+                            <th>
+                                Nome
+                            </th>
+
+                            <th>
+                                Email
+                            </th>
+
+                            <th>
+                                Utilizador
+                            </th>
+
+                            <th>
+                                Estado
+                            </th>
+
+                            <th>
+                                Ações
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="tabelaAlunos">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             PROFESSORES
+        ================================= -->
+
+        <section
+            id="professores"
+            class="pagina">
+
+            <h2>
+                👨‍🏫 Gestão de Professores
+            </h2>
+
+
+            <button
+                class="btn-principal"
+                onclick="adicionarProfessor()">
+
+                + Adicionar Professor
+
+            </button>
+
+
+            <input
+                type="text"
+                id="pesquisaProfessor"
+                placeholder="🔎 Pesquisar professor..."
+                oninput="mostrarProfessores()"
+            >
+
+
+            <div class="tabela-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Nº
+                            </th>
+
+                            <th>
+                                Nome
+                            </th>
+
+                            <th>
+                                Email
+                            </th>
+
+                            <th>
+                                Disciplina
+                            </th>
+
+                            <th>
+                                Ações
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="tabelaProfessores">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             CURSOS
+        ================================= -->
+
+        <section
+            id="cursos"
+            class="pagina">
+
+            <h2>
+                📚 Gestão de Cursos
+            </h2>
+
+
+            <button
+                class="btn-principal"
+                onclick="adicionarCurso()">
+
+                + Adicionar Curso
+
+            </button>
+
+
+            <div class="tabela-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Nº
+                            </th>
+
+                            <th>
+                                Curso
+                            </th>
+
+                            <th>
+                                Código
+                            </th>
+
+                            <th>
+                                Duração
+                            </th>
+
+                            <th>
+                                Ações
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="tabelaCursos">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             TURMAS
+        ================================= -->
+
+        <section
+            id="turmas"
+            class="pagina">
+
+            <h2>
+                🏫 Gestão de Turmas
+            </h2>
+
+
+            <button
+                class="btn-principal"
+                onclick="adicionarTurma()">
+
+                + Adicionar Turma
+
+            </button>
+
+
+            <div class="tabela-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Nº
+                            </th>
+
+                            <th>
+                                Turma
+                            </th>
+
+                            <th>
+                                Curso
+                            </th>
+
+                            <th>
+                                Ano
+                            </th>
+
+                            <th>
+                                Ações
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="tabelaTurmas">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             DISCIPLINAS
+        ================================= -->
+
+        <section
+            id="disciplinas"
+            class="pagina">
+
+            <h2>
+                📖 Gestão de Disciplinas
+            </h2>
+
+
+            <button
+                class="btn-principal"
+                onclick="adicionarDisciplina()">
+
+                + Adicionar Disciplina
+
+            </button>
+
+
+            <div class="tabela-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Nº
+                            </th>
+
+                            <th>
+                                Disciplina
+                            </th>
+
+                            <th>
+                                Código
+                            </th>
+
+                            <th>
+                                Curso
+                            </th>
+
+                            <th>
+                                Ações
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="tabelaDisciplinas">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             MATRÍCULAS
+        ================================= -->
+
+        <section
+            id="matriculas"
+            class="pagina">
+
+            <h2>
+                📝 Gestão de Matrículas
+            </h2>
+
+
+            <button
+                class="btn-principal"
+                onclick="adicionarMatricula()">
+
+                + Nova Matrícula
+
+            </button>
+
+
+            <div class="tabela-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Nº
+                            </th>
+
+                            <th>
+                                Aluno
+                            </th>
+
+                            <th>
+                                Curso
+                            </th>
+
+                            <th>
+                                Ano
+                            </th>
+
+                            <th>
+                                Estado
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="tabelaMatriculas">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             NOTAS
+        ================================= -->
+
+        <section
+            id="notas"
+            class="pagina">
+
+            <h2>
+                📊 Gestão de Notas
+            </h2>
+
+
+            <button
+                class="btn-principal"
+                onclick="adicionarNota()">
+
+                + Lançar Nota
+
+            </button>
+
+
+            <div class="tabela-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Aluno
+                            </th>
+
+                            <th>
+                                Disciplina
+                            </th>
+
+                            <th>
+                                Nota
+                            </th>
+
+                            <th>
+                                Estado
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="tabelaNotas">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             UTILIZADORES
+        ================================= -->
+
+        <section
+            id="utilizadores"
+            class="pagina">
+
+            <h2>
+                👥 Utilizadores
+            </h2>
+
+            <p>
+                Gestão das contas do sistema.
+            </p>
+
+
+            <div id="listaUtilizadores">
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             RELATÓRIOS
+        ================================= -->
+
+        <section
+            id="relatorios"
+            class="pagina">
+
+            <h2>
+                📈 Relatórios
+            </h2>
+
+
+            <div class="card">
+
+                <h3>
+                    Resumo Académico
+                </h3>
+
+                <p>
+                    Total de alunos:
+                    <strong id="relatorioAlunos">
+                        0
+                    </strong>
+                </p>
+
+                <p>
+                    Total de professores:
+                    <strong id="relatorioProfessores">
+                        0
+                    </strong>
+                </p>
+
+                <p>
+                    Total de cursos:
+                    <strong id="relatorioCursos">
+                        0
+                    </strong>
+                </p>
+
+                <p>
+                    Total de turmas:
+                    <strong id="relatorioTurmas">
+                        0
+                    </strong>
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

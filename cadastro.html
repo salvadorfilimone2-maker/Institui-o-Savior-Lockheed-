@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastro de Aluno</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="login-box">
+
+            <div class="logo">
+                🎓
+            </div>
+
+            <h1>
+                Cadastro de Aluno
+            </h1>
+
+            <p class="subtitulo">
+                Crie a sua conta académica
+            </p>
+
+
+            <form id="cadastroForm">
+
+
+                <!-- NOME -->
+
+                <label for="nome">
+                    Nome completo
+                </label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    placeholder="Digite o seu nome completo"
+                    required
+                >
+
+
+                <!-- DATA DE NASCIMENTO -->
+
+                <label for="dataNascimento">
+                    Data de nascimento
+                </label>
+
+                <input
+                    type="date"
+                    id="dataNascimento"
+                    required
+                >
+
+
+                <!-- SEXO -->
+
+                <label for="sexo">
+                    Sexo
+                </label>
+
+                <select id="sexo" required>
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    <option value="Masculino">
+                        Masculino
+                    </option>
+
+                    <option value="Feminino">
+                        Feminino
+                    </option>
+
+                </select>
+
+
+                <!-- EMAIL -->
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Digite o seu email"
+                    required
+                >
+
+
+                <!-- UTILIZADOR -->
+
+                <label for="novoUsername">
+                    Nome de utilizador
+                </label>
+
+                <input
+                    type="text"
+                    id="novoUsername"
+                    placeholder="Escolha o seu utilizador"
+                    required
+                >
+
+
+                <!-- SENHA -->
+
+                <label for="novaPassword">
+                    Senha
+                </label>
+
+                <input
+                    type="password"
+                    id="novaPassword"
+                    placeholder="Crie uma senha"
+                    required
+                >
+
+
+                <!-- CONFIRMAR SENHA -->
+
+                <label for="confirmarPassword">
+                    Confirmar senha
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmarPassword"
+                    placeholder="Repita a senha"
+                    required
+                >
+
+
+                <!-- BOTÃO -->
+
+                <button
+                    type="submit"
+                    class="btn-principal">
+
+                    Enviar cadastro
+
+                </button>
+
+
+                <p id="cadastroMessage"></p>
+
+
+                <!-- VOLTAR -->
+
+                <button
+                    type="button"
+                    class="btn-secundario"
+                    onclick="window.location.href='index.html'">
+
+                    ← Voltar ao login
+
+                </button>
+
+            </form>
+
+
+            <p class="informacao">
+
+                Após enviar o cadastro,
+                aguarde a aprovação do administrador.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!-- ============================= -->
+<!-- SISTEMA DE USUÁRIOS -->
+<!-- ============================= -->
+
+<div id="usuarios" class="secao">
+
+    <h2>Gestão de Usuários</h2>
+
+    <div class="form-card">
+
+        <h3>Cadastrar Usuário</h3>
+
+        <label>Nome completo</label>
+        <input
+            type="text"
+            id="usuarioNome"
+            placeholder="Digite o nome completo"
+        >
+
+        <label>Nome de usuário</label>
+        <input
+            type="text"
+            id="usuarioUsername"
+            placeholder="Digite o nome de usuário"
+        >
+
+        <label>Email</label>
+        <input
+            type="email"
+            id="usuarioEmail"
+            placeholder="Digite o email"
+        >
+
+        <label>Senha</label>
+        <input
+            type="password"
+            id="usuarioSenha"
+            placeholder="Digite a senha"
+        >
+
+        <label>Tipo de usuário</label>
+        <select id="usuarioTipo">
+            <option value="">Selecione o tipo</option>
+            <option value="Administrador">Administrador</option>
+            <option value="Professor">Professor</option>
+            <option value="Aluno">Aluno</option>
+        </select>
+
+        <button onclick="cadastrarUsuario()">
+            Cadastrar Usuário
+        </button>
+
+    </div>
+
+    <div class="lista-card">
+
+        <h3>Usuários cadastrados</h3>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Usuário</th>
+                    <th>Email</th>
+                    <th>Tipo</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody id="tabelaUsuarios">
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
